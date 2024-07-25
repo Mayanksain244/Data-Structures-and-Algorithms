@@ -25,7 +25,7 @@ public:
     {
         this->prev = pre;
         this->value = num;
-        this->next = next;
+        this->next = nxt;
     }
 };
 
@@ -34,7 +34,7 @@ class DoubleLinkedList
 private:
     Node *head;
     Node *tail;
-    int  length;
+    int length = 0;
 public:
     DoubleLinkedList(){
         head = new Node();
@@ -82,13 +82,17 @@ public:
             std::cout << "index out of bound" << std::endl;
         }
         else{
+
+
             Node *iterHead = head;
             Node *iterTail = tail;
 
             int indexCounter = 0;
             while (iterHead->next != nullptr)
             {
-                if(indexCounter == index-1) //going to the previous node before the index
+                if(indexCounter == index-1){
+                    break;
+                } //going to the previous node before the index
                 iterHead = iterHead->next;
                 indexCounter++;
             }
@@ -99,7 +103,7 @@ public:
             }
 
             iterHead->next = new Node(iterHead,num,iterTail);
-            tail->prev = iterHead->next;
+            iterTail->prev = iterHead->next;
             
             
         }
@@ -151,15 +155,29 @@ public:
 
     void Print(){
         Node* iterator = head;
-        // while (iterator != nullptr)
-        // {
-        //     std::cout << iterator->value << " ";
-        //     iterator = iterator->next;
+        while (iterator != nullptr)
+        {
+            std::cout << iterator->value << " ";
+            iterator = iterator->next;
 
-        // }
-        std::cout << bool(iterator->next->next) <<std::endl;
+        }
+        std::cout << std::endl;
 
+        // std::cout << "head = " << head->value << std::endl;
+        // std::cout << "tail = " << tail->value << std::endl;
+
+    }
+
+    void PrintRev(){
         
+        Node* iterator = tail;
+        while (iterator != nullptr)
+        {
+            std::cout << iterator->value << " ";
+            iterator = iterator->prev;
+
+        }
+        std::cout << std::endl;
     }
 
 
@@ -170,5 +188,13 @@ main()
 {
     DoubleLinkedList list(1);
     list.addNodeEnd(2);
+    list.addNodeEnd(3);
+    list.addNodeEnd(4);
+    list.addNodeEnd(5);
+    list.addNodeFront(0);
+    list.insert(100,2);
+
     list.Print();
+    list.PrintRev();
+    std::cout << list.Length();
 }
