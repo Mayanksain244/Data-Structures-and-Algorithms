@@ -107,18 +107,54 @@ public:
             
             
         }
+        length++;
         
         
     }
-
-
-
-
-    
 
     void replace(int num, int index){
+        if(index >= length || index < 0){
+            std::cout << "index out of bound" << std::endl;
+            return; 
+        }
 
+        int indexCounter = (index < (length)/2)?0:length-1;
+        Node* iterator = (index < (length)/2)?head:tail;
+
+        std::cout << "iterator = "<< iterator->value << std::endl;
+
+        if(index < int((length)/2)){
+            while (iterator->next!=nullptr)
+            {
+                std::cout << "current index = " << indexCounter <<std::endl;
+                std::cout << "iter val = " << iterator->value << std::endl;
+
+                if(indexCounter == index){
+                    break;
+                }
+                iterator = iterator->next;
+                indexCounter++;
+            }
+        }
+        else{
+            while (iterator->prev!=nullptr)
+            {
+                std::cout << "current index = " << indexCounter <<std::endl;
+                std::cout << "iter val = " << iterator->value << std::endl;
+
+                if(indexCounter == index){
+                    break;
+                }
+                iterator = iterator->prev;
+                indexCounter--;
+            }
+        }
+
+        // which ever node is close will go to replace the value
+
+        iterator->value = num;
     }
+
 
 
 
@@ -193,6 +229,7 @@ main()
     list.addNodeEnd(5);
     list.addNodeFront(0);
     list.insert(100,2);
+    list.replace(999,7);
 
     list.Print();
     list.PrintRev();

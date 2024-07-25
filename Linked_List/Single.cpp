@@ -141,7 +141,7 @@ public:
 
     void replace(int num, int index)
     {
-        if (index >= length)
+        if (index >= length || index < 0)
         {
             std::cout << "index of of bound" << std::endl;
             return;
