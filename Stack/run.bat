@@ -1,0 +1,1 @@
+g++ -I include/ Stack/Fixed.cpp -o Stack/Fixed.exe
