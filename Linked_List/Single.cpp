@@ -47,20 +47,20 @@ public:
     }
 };
 
-class LinkedList
+class SingleLinkedList
 {
 private:
     Node *head;
     int length = 0;
 
 public:
-    LinkedList()
+    SingleLinkedList()
     {
         head = new Node();
         length++;
     }
 
-    LinkedList(int num)
+    SingleLinkedList(int num)
     {
         head = new Node(num);
         length++;
@@ -141,7 +141,7 @@ public:
 
     void replace(int num, int index)
     {
-        if (index >= length)
+        if (index >= length || index < 0)
         {
             std::cout << "index of of bound" << std::endl;
             return;
@@ -284,17 +284,14 @@ public:
 
 int main()
 {
-    LinkedList list(1);
+    SingleLinkedList list(1);
     list.addNodeEnd(2);
     list.addNodeEnd(3);
+    list.addNodeEnd(4);
+    list.addNodeEnd(5);
 
     list.Print();
-    list.del(1);
-
+    list.insert(101,5);
     list.Print();
-
-    std::cout << "-------------------------------------------" << std::endl;
-    std::cout << list.Length() << std::endl;
-    std::cout << list.getItem(2) << std::endl;
-    std::cout << list[2] << std::endl;
+    
 }
