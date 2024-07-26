@@ -155,14 +155,16 @@ public:
         iterator->value = num;
     }
 
-
-
-
-
-    
-
-
     void delEnd(){
+        
+        tail = tail->prev;
+        tail->next->prev = nullptr;
+
+        delete tail->next;
+
+        tail->next = nullptr;
+
+        length--;
 
     }
 
@@ -173,15 +175,108 @@ public:
 
     void delFront(){
 
+        head = head->next;
+        head->prev->next = nullptr;
+        
+        delete head->prev;
+
+        head->prev = nullptr;
+
+        length--;
+
     }
-
-
-
-
-    
 
     void del(int index){
 
+        if (index == 0)
+        {
+            delFront();
+        }
+        else if (index == length - 1)
+        {
+            delEnd();
+        }
+        else if (index >= length)
+        {
+            std::cout << "index out of bound" << std::endl;
+        }
+        else{
+            int indexCounter = (index < (length)/2)?0:length-1;
+            Node* iterator = (index < (length)/2)?head:tail;
+
+            // std::cout << "iterator = "<< iterator->value << std::endl;
+
+            if(index < int((length)/2)){
+                while (iterator->next!=nullptr)
+                {
+                    // std::cout << "current index = " << indexCounter <<std::endl;
+                    // std::cout << "iter val = " << iterator->value << std::endl;
+
+                    if(indexCounter == index){
+                        break;
+                    }
+                    iterator = iterator->next;
+                    indexCounter++;
+                }
+            }
+            else{
+                while (iterator->prev!=nullptr)
+                {
+                    // std::cout << "current index = " << indexCounter <<std::endl;
+                    // std::cout << "iter val = " << iterator->value << std::endl;
+
+                    if(indexCounter == index){
+                        break;
+                    }
+                    iterator = iterator->prev;
+                    indexCounter--;
+                }
+            }
+
+            iterator->prev->next = iterator->next;
+            iterator->next->prev = iterator->prev;
+            delete iterator; 
+            length--;
+            
+        }
+
+    } 
+
+
+
+
+
+    int getItem(int index)
+    {
+
+        Node *iterator = head;
+
+        int indexCounter = 0;
+        while (head != nullptr)
+        {
+            if (indexCounter == index)
+            {
+                int val = head->value;
+
+                head = iterator;
+
+                return val;
+            }
+
+            head = head->next;
+            indexCounter++;
+        }
+
+        std::cerr << "Error: Index out of range" << std::endl;
+
+        return -1;
+
+    }
+
+    int operator[](int i){
+
+        return getItem(i);
+    
     }
 
 
@@ -232,6 +327,17 @@ main()
     list.replace(999,7);
 
     list.Print();
+    list.delEnd();
+    list.Print();
+    list.delFront();
+    list.Print();
+    list.del(4);
+    list.Print();
     list.PrintRev();
-    std::cout << list.Length();
+
+
+
+    std::cout << list.Length() << std::endl;
+    std::cout << "----------------------------------------------------------------" << std::endl;
+    std::cout << list[4];
 }
