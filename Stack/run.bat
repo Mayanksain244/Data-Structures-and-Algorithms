@@ -1,1 +1,1 @@
-g++ -I include/ Stack/Fixed.cpp -o Stack/Fixed.exe
+g++ -I include/ Stack/Dynamic.cpp -o Stack/Dynamic.exe

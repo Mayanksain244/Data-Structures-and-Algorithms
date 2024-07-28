@@ -3,29 +3,23 @@
 
 class Stack{
 private:
-    int length = 0; 
-    int maxLen = 0;
+    int length = 0;
 public:
     Node* top;
     SingleLinkedList* list;
-    Stack(int size){
-        this->maxLen = size;
-    }
     
     void push(int num){
-        if(length == maxLen){
-            std::cout << "Overflow" << std::endl;   
-        }
-        else if(length==0){
+        if(length==0){
             list = new SingleLinkedList(num);
-            std::cout <<list->Length()<< std::endl;
+            // std::cout <<list->Length()<< std::endl;
             length++;
         }
         else{
             list->addNodeFront(num);
-            list->Print();
+            // list->Print();
             this->length++;
         }
+        std::cout << "Pushed : " <<list->head->value<< std::endl;
     }
 
     
@@ -39,14 +33,14 @@ public:
             int val = list->head->value;
             delete list;
             length--;
-            std::cout << val << std::endl;
+            std::cout << "Poped : "<< val << std::endl;
             return val;
         }
         else{
             int val = list->head->value;
             list->delFront();
             length--;
-            std::cout << val << std::endl;
+            std::cout << "Poped : "<< val << std::endl;
             return val;
         }
         
@@ -68,19 +62,11 @@ public:
             return false;
         }
     }
-
-    bool isFull(){
-        if(length == maxLen){
-            return true;
-        }else{
-            return false;
-        }
-    }
     
 };
 
 int main(){
-    Stack a(5);
+    Stack a;
     a.push(20);
     a.push(20);
     a.push(30);
@@ -101,4 +87,5 @@ int main(){
     a.push(50);
     a.push(60);
     a.peek();
+    std::cout << (a.isEmpty())<< std::endl;
 }
