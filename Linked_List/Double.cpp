@@ -315,29 +315,29 @@ public:
 };
 
 
-main()
-{
-    DoubleLinkedList list(1);
-    list.addNodeEnd(2);
-    list.addNodeEnd(3);
-    list.addNodeEnd(4);
-    list.addNodeEnd(5);
-    list.addNodeFront(0);
-    list.insert(100,2);
-    list.replace(999,7);
+// main()
+// {
+//     DoubleLinkedList list(1);
+//     list.addNodeEnd(2);
+//     list.addNodeEnd(3);
+//     list.addNodeEnd(4);
+//     list.addNodeEnd(5);
+//     list.addNodeFront(0);
+//     list.insert(100,2);
+//     list.replace(999,7);
 
-    list.Print();
-    list.delEnd();
-    list.Print();
-    list.delFront();
-    list.Print();
-    list.del(4);
-    list.Print();
-    list.PrintRev();
+//     list.Print();
+//     list.delEnd();
+//     list.Print();
+//     list.delFront();
+//     list.Print();
+//     list.del(4);
+//     list.Print();
+//     list.PrintRev();
 
 
 
-    std::cout << list.Length() << std::endl;
-    std::cout << "----------------------------------------------------------------" << std::endl;
-    std::cout << list[4];
-}
+//     std::cout << list.Length() << std::endl;
+//     std::cout << "----------------------------------------------------------------" << std::endl;
+//     std::cout << list[4];
+// }

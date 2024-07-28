@@ -1,0 +1,1 @@
+g++ -I include/ Stack/Dynamic.cpp -o Stack/Dynamic.exe

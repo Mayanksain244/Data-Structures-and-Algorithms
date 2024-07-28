@@ -1,26 +1,7 @@
-/*
-this is what all i have added yet
+#ifndef S_LINKEDLIST
+#define S_LINKEDLIST
 
-- add at end
-- add at front
-- insert at index ("out of bound")
-
--replace at index
-
-- delete from end
-- delete from front
-- delete from index
-
-- get item (operator overloading)
-
-things i will add
-
--- added all the stuff i want to add
-        rest i will think later
-
-*/
-
-#include <iostream>
+#include<iostream>
 
 class Node
 {
@@ -51,9 +32,10 @@ class SingleLinkedList
 {
 private:
     int length = 0;
-    Node *head;
 
 public:
+    Node *head;
+    
     SingleLinkedList()
     {
         head = new Node();
@@ -112,7 +94,7 @@ public:
         }
         else if (index > length)
         {
-            std::cout << "index out of bound" << std::endl;
+            // std::cout << "index out of bound" << std::endl;
         }
         else
         {
@@ -143,7 +125,7 @@ public:
     {
         if (index >= length || index < 0)
         {
-            std::cout << "index of of bound" << std::endl;
+            // std::cout << "index of of bound" << std::endl;
             return;
         }
 
@@ -205,7 +187,7 @@ public:
         }
         else if (index >= length)
         {
-            std::cout << "index out of bound" << std::endl;
+            // std::cout << "index out of bound" << std::endl;
         }
         else
         {
@@ -254,7 +236,7 @@ public:
             indexCounter++;
         }
 
-        std::cerr << "Error: Index out of range" << std::endl;
+        // std::cerr << "Error: Index out of range" << std::endl;
 
         return -1;
 
@@ -280,18 +262,10 @@ public:
 
         head = iterator;
     }
+
+
+
+
 };
 
-// int main()
-// {
-//     SingleLinkedList list(1);
-//     list.addNodeEnd(2);
-//     list.addNodeEnd(3);
-//     list.addNodeEnd(4);
-//     list.addNodeEnd(5);
-
-//     list.Print();
-//     list.insert(101,5);
-//     list.Print();
-    
-// }
+#endif
