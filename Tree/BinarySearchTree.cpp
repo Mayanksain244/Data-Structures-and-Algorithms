@@ -31,6 +31,20 @@ public:
         return _getHeight(this->root);
     }
 
+    void inOrder(){
+        _inOrderTraversal(this->root);
+        std::cout<<std::endl;
+    }
+
+    bool searchKey(int key){
+        return _searchKey(this->root,key);
+    }
+
+    void Delete(int key){
+        root = _Delete(root ,key);
+    }
+
+
     // void insertData2(Node *node, int data){
     //     if(node == nullptr){
     //         node = new Node(data);
@@ -65,6 +79,49 @@ public:
         return std::max(lh , rh);
     }
 
+    void _inOrderTraversal(Node* root){
+        if(root != nullptr){
+            _inOrderTraversal(root->left);
+            std::cout<<root->data<<" ";
+            _inOrderTraversal(root->right);
+        }
+    }
+
+    bool _searchKey(Node* root , int key){
+        if(root == nullptr){
+            return false;
+        }
+        if(key == root->data){
+            return true;
+        }
+        else if(key > root->data ){
+            return _searchKey(root->right,key);
+        }
+        else if(key < root->data){
+            return _searchKey(root->left,key);
+        }
+        return false;
+    }
+
+    Node* _Delete(Node* root ,int key){
+        if(root == nullptr) {
+            return nullptr;
+        }
+        else{
+            // find the element
+            if(key < root->data){
+                root->left = _Delete(root->left,key);
+            }
+            else if(key > root->data){
+                root->right = _Delete(root->right,key);
+            }
+            else{
+                // key is found and not remove it
+            }
+
+        }
+    }
+
 
     BSTree(){
         root = nullptr;
@@ -74,13 +131,23 @@ public:
 
 int main(){
     BSTree a;
-    a.insert(60);
+    a.insert(8);
+    a.insert(4);
+    a.insert(2);
+    a.insert(6);
+    a.insert(1);
+    a.insert(3);
+    a.insert(5);
+    a.insert(7);
+    a.insert(12);
+    a.insert(10);
+    a.insert(9);
+    a.insert(11);
+    a.insert(14);
+    a.insert(13);
     a.insert(15);
-    a.insert(25);
-    a.insert(20);
-    a.insert(70);
-    a.insert(80);
-    a.insert(100);
-    a.insert(90);
     std::cout<< a.height() <<std::endl;
+
+    a.inOrder();
+    std::cout<<a.searchKey(101);
 }
